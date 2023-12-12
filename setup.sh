@@ -35,8 +35,15 @@ then
 pulumi config set compartment_ocid $REPLY
 fi
 
-echo "Create cloudkey ssh keys at ~/.ssh"
-ssh-keygen -b 2048 -t rsa -f cloudkey
+read -p "Please provide oci private key" -r
+echo    # (optional) move to a new line
+if [[   ! -z "$REPLY" ]]
+then
+cat $REPLY | pulumi config set oci:privateKey --secret
+fi
+
+echo "Create cloudkey ssh keys at in the current dir"
+ssh-keygen -t rsa -m PEM -f cloudkey
 
 cat cloudkey.pub | pulumi config set ssh_authorized_keys
 pulumi config set ssh_private_key_file cloudkey

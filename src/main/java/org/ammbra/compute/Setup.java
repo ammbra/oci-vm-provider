@@ -4,13 +4,13 @@ import com.pulumi.Config;
 import com.pulumi.Context;
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
-import com.pulumi.oci.Core.*;
+import com.pulumi.oci.Core.Instance;
 import org.ammbra.compute.finder.AvailabilityDomain;
 import org.ammbra.compute.finder.ComputeShape;
 import org.ammbra.compute.finder.InfrastructureFinder;
 import org.ammbra.compute.finder.PlatformImage;
 import org.ammbra.compute.subnet.*;
-import org.ammbra.compute.subnet.Subnet;
+import org.ammbra.compute.subnet.Subnetwork;
 import org.ammbra.compute.subnet.VirtualNetwork;
 
 import java.util.EnumMap;
@@ -32,19 +32,19 @@ public class Setup {
 
 		var routeTable = (RouterTable) SubnetInfrastructureFactory.provision(configMap, internetGateway);
 
-		var subnet = (Subnet) SubnetInfrastructureFactory.provision(configMap, routeTable);
+		var subnet = (Subnetwork) SubnetInfrastructureFactory.provision(configMap, routeTable);
 
 		var firstAvailabilityDomain = (AvailabilityDomain) InfrastructureFinder.findInfrastructure(configMap, null);
 
 		var firstShape = (ComputeShape)InfrastructureFinder.findInfrastructure(configMap, firstAvailabilityDomain);
 
-		var compatibleImage = InfrastructureFinder.findInfrastructure(configMap, firstShape);
+		var compatibleImage = (PlatformImage) InfrastructureFinder.findInfrastructure(configMap, firstShape);
 
 		int amount = Integer.parseInt(configMap.get(Params.AMOUNT_VM));
 
 		for (int i = 1; i <= amount; i++) {
 
-			Instance instance = InfrastructureChain.execute(configMap, "instance" + i,  subnet, (PlatformImage) compatibleImage);
+			Instance instance = InfrastructureChain.execute(configMap, "instance" + i,  subnet,  compatibleImage);
 
 			var sshKeyFile = configMap.get(Params.SSH_PRIVATE_KEY_FILE);
 			Output<String> displayName = instance.displayName().applyValue(name -> name);

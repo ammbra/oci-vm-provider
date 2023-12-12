@@ -3,13 +3,13 @@ config:
   oci-vm-provider:amount_vm: 1
   oci-vm-provider:compartment_ocid: your-parent-compartment
   oci-vm-provider:operating_system: Oracle Linux
-  oci-vm-provider:operating_system_version: "9.2"
+  oci-vm-provider:operating_system_version: "9"
   oci-vm-provider:routetable_displayname: demo_routetable
   oci-vm-provider:subnet_cidr: 10.0.0.0/28
   oci-vm-provider:subnet_displayname: demo_subnet
   oci-vm-provider:internetgateway_name: demo_internetgateway
-  oci-vm-provider:shape: "VM.Standard3.Flex"
   oci-vm-provider:ssh_authorized_keys: your-ssh-key
   oci-vm-provider:ssh_private_key_file: your-private-key-file
   oci-vm-provider:vcn_cidr_block: 10.0.0.0/16
   oci-vm-provider:vcn_display_name: demo_vcn
+  oci-vm-provider:vcn_dns_label: demodns

@@ -51,7 +51,7 @@ public final class InfrastructureFinder {
 						.availabilityDomain(availabilityDomain.name()).build())
 				.applyValue(result -> {
 					var shapes = result.shapes();
-					var firstShape = shapes.stream().filter(res -> res.name().contains(configMap.get(Params.SHAPE))).findFirst();
+					var firstShape = shapes.stream().findFirst();
 					return firstShape.orElse(shapes.getFirst()).name();
 				});
 		return new ComputeShape(name, availabilityDomain);

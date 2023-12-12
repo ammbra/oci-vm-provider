@@ -7,7 +7,7 @@ import com.pulumi.oci.Core.inputs.InstanceCreateVnicDetailsArgs;
 import com.pulumi.oci.Core.inputs.InstanceLaunchOptionsArgs;
 import com.pulumi.oci.Core.inputs.InstanceSourceDetailsArgs;
 import org.ammbra.compute.finder.PlatformImage;
-import org.ammbra.compute.subnet.Subnet;
+import org.ammbra.compute.subnet.Subnetwork;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ public class InfrastructureChain {
 
 	private InfrastructureChain() {}
 
-	public static Instance execute(EnumMap<Params, String> configMap, String name, Subnet subnet, PlatformImage image) {
+	public static Instance execute(EnumMap<Params, String> configMap, String name, Subnetwork subnet, PlatformImage image) {
 		InstanceAgentConfigArgs agentConf = InstanceAgentConfigArgs.builder().isMonitoringDisabled(false).build();
 		InstanceCreateVnicDetailsArgs vnicDetails = InstanceCreateVnicDetailsArgs.builder()
 				.subnetId(subnet.id())
@@ -35,7 +35,7 @@ public class InfrastructureChain {
 				.compartmentId(configMap.get(Params.COMPARTMENT_OCID))
 				.shape(image.shape().name())
 				.availabilityDomain(image.shape().availabilityDomain().name())
-				.metadata(Map.of(Params.SSH_KEY.getLabel(), configMap.get(Params.SSH_PRIVATE_KEY_FILE)))
+				.metadata(Map.of(Params.SSH_PRIVATE_KEY_FILE.getLabel(), configMap.get(Params.SSH_KEY)))
 				.agentConfig(agentConf)
 				.preserveBootVolume(true)
 				.createVnicDetails(vnicDetails)

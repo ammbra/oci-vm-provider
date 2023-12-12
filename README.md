@@ -10,22 +10,22 @@ This project uses Java and Pulumi CLI to create a Compute Instance on [Oracle Cl
 
 ## How to run the project locally
 
-Initialize your local setup with [`prepare.sh`](prepare.sh) script. This script does the following:
+Initialize your local setup by following the steps from [`prepare.sh`](prepare.sh) script. This script does the following:
 
-* Installs pulumi CLI if not already installed
+* Install pulumi CLI if not already installed
 
-* Creates a directory and login (the states of your stack will be saved locally):
+* Create a directory and login (the states of your stack will be saved locally):
   ```shell
   mkdir pulumi-state-local
   pulumi login file://pulumi-state-local
   ```
 
-* Makes a new pulumi stack by running `https://github.com/ammbra/oci-vm-provider.git`.
+* Make a new pulumi stack by running `pulumi new https://github.com/ammbra/oci-vm-provider.git`.
 When prompted for project name, use `oci-vm-provider` and use the default description.
 Also, please use the stack name  `oci-vm-provider` in order to copy the settings provided.
 You may choose to enter or keep an empty passphrase when asked.
 
-* Executes `setup.sh` script that actually creates the infrastructure.
+Now, execute `setup.sh` script that actually creates the infrastructure.
 
 Finally, preview the stack using `pulumi preview`.
 
@@ -41,14 +41,13 @@ Click the link and copy the following values into the `setup.sh` prompt:
 * `tenancy` to fulfill your tenancy OCID. 
 * `user` for your userOcid
 * `fingerprint` to fill in your oci fingerprint 
+* `privateKey` associated with the fingerprint
 
 ![capabilities.png](capabilities.png)
 
-Your cluster will be deployed in a compartment inside OCI, so you should get `compartment_ocid`.
+Your instance will be deployed in a compartment inside OCI, so you should get `compartment_ocid`.
 To get one of these ids, use the search provided by the `Oracle Cloud Console` user interface and type `compartment`.
 Press enter, and you will receive all the compartments and associated OCIDs you are have been enabled.
-
-
 
 Wait for a couple of minutes, and you will have a ready to work with OCI instance.
 

@@ -18,7 +18,7 @@ public final class SubnetInfrastructureFactory {
 			case VirtualNetwork vcn ->  provision(configMap, vcn);
 			case NetworkGateway networkGateway -> provision(configMap, networkGateway);
 			case RouterTable routerTable -> provision(configMap, routerTable);
-			case Subnet subnet -> provision(configMap, subnet);
+			case Subnetwork subnet -> provision(configMap, subnet);
 			case SubnetStructure infra -> throw new UnsupportedOperationException(String.format("No operation set for type %s", infra.getClass().getSimpleName()));
 		};
 	}
@@ -29,6 +29,7 @@ public final class SubnetInfrastructureFactory {
 				.displayName(name)
 				.compartmentId(configMap.get(Params.COMPARTMENT_OCID))
 				.cidrBlock(configMap.get(Params.VCN_CIDR_BLOCK))
+				.dnsLabel(configMap.get(Params.VCN_DNS_LABEL))
 				.build();
 		Vcn vcn = new Vcn(name, args);
 		return new VirtualNetwork(vcn.id(), vcn.compartmentId(), vcn.displayName(), vcn.cidrBlock());
@@ -60,7 +61,7 @@ public final class SubnetInfrastructureFactory {
 		return new RouterTable(routeTable.id(), routeTable.compartmentId(), routeTable.displayName(), networkGateway);
 	}
 
-	private static Subnet provision(EnumMap<Params, String> configMap, RouterTable routeTable) {
+	private static Subnetwork provision(EnumMap<Params, String> configMap, RouterTable routeTable) {
 		String name = configMap.get(Params.SUBNET_DISPLAYNAME);
 		SubnetArgs args = SubnetArgs.builder()
 				.compartmentId(configMap.get(Params.COMPARTMENT_OCID))
@@ -68,10 +69,11 @@ public final class SubnetInfrastructureFactory {
 				.cidrBlock(configMap.get(Params.SUBNET_CIDR))
 				.prohibitInternetIngress(false)
 				.routeTableId(routeTable.id())
-				.vcnId(routeTable.id())
+				.dnsLabel("holendpoints")
+				.vcnId(routeTable.networkGateway().vcn().id())
 				.build();
-		com.pulumi.oci.Core.Subnet subnet = new com.pulumi.oci.Core.Subnet(name, args);
-		return  new Subnet(subnet.id(), subnet.compartmentId(), subnet.displayName(), subnet.cidrBlock(), routeTable);
+		Subnet subnet = new Subnet(name, args);
+		return  new Subnetwork(subnet.id(), subnet.compartmentId(), subnet.displayName(), subnet.cidrBlock(), routeTable);
 	}
 
 
