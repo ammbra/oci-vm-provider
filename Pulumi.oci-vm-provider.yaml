@@ -1,4 +1,3 @@
-encryptionsalt: v1:vKV50pSLbbw=:v1:PiYiKZNjECFVif+u:8hDhF3UAjS0awfKcgQEcm3XbwnwojQ==
 config:
   oci-vm-provider:amount_vm: 1
   oci-vm-provider:compartment_ocid: your-parent-compartment
