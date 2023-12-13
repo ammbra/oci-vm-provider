@@ -6,6 +6,7 @@ config:
   oci-vm-provider:routetable_displayname: demo_routetable
   oci-vm-provider:subnet_cidr: 10.0.0.0/28
   oci-vm-provider:subnet_displayname: demo_subnet
+  oci-vm-provider:subnet_dns_label: demoendpoints
   oci-vm-provider:internetgateway_name: demo_internetgateway
   oci-vm-provider:ssh_authorized_keys: your-ssh-key
   oci-vm-provider:ssh_private_key_file: your-private-key-file

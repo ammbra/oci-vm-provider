@@ -12,6 +12,7 @@ public enum Params {
 	ROUTETABLE_DISPLAYNAME("routetable_displayname"),
 	SUBNET_CIDR("subnet_cidr"),
 	SUBNET_DISPLAYNAME("subnet_displayname"),
+	SUBNET_DNS_LABEL("subnet_dns_label"),
 	AMOUNT_VM("amount_vm"),
 	SSH_KEY("ssh_authorized_keys"),
 	SSH_PRIVATE_KEY_FILE("ssh_private_key_file");

@@ -69,7 +69,7 @@ public final class SubnetInfrastructureFactory {
 				.cidrBlock(configMap.get(Params.SUBNET_CIDR))
 				.prohibitInternetIngress(false)
 				.routeTableId(routeTable.id())
-				.dnsLabel("holendpoints")
+				.dnsLabel(configMap.get(Params.SUBNET_DNS_LABEL))
 				.vcnId(routeTable.networkGateway().vcn().id())
 				.build();
 		Subnet subnet = new Subnet(name, args);
