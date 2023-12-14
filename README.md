@@ -16,8 +16,8 @@ Initialize your local setup by following the steps from [`prepare.sh`](prepare.s
 
 * Create a directory and login (the states of your stack will be saved locally):
   ```shell
-  mkdir pulumi-state-local
-  pulumi login file://pulumi-state-local
+  mkdir oci-stack-statefile
+  pulumi login file://oci-stack-statefile
   ```
 
 * Make a new pulumi stack by running `pulumi new https://github.com/ammbra/oci-vm-provider.git`.
@@ -42,6 +42,9 @@ Click the link and copy the following values into the `setup.sh` prompt:
 * `user` for your userOcid
 * `fingerprint` to fill in your oci fingerprint 
 * `privateKey` associated with the fingerprint
+* `region` where you wish to provision the infrastructure 
+* `compartment_ocid` to specify the compartment OCID where you will provision the instance(s).
+
 
 ![capabilities.png](capabilities.png)
 
