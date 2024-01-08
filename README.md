@@ -52,9 +52,27 @@ Your instance will be deployed in a compartment inside OCI, so you should get `c
 To get one of these ids, use the search provided by the `Oracle Cloud Console` user interface and type `compartment`.
 Press enter, and you will receive all the compartments and associated OCIDs you are have been enabled.
 
-Wait for a couple of minutes, and you will have a ready to work with OCI instance.
+## Deploy from local
 
-When you are done with your compute instance, you can delete the stack using `pulumi destroy `
+To run the existing project, you just simply have to run the following command in the terminal window:
+
+```shell
+pulumi up
+```
+Wait for a couple of minutes, and you will have a ready to work with OCI instance.
+If you want to deploy to another environment, simply create a new stack by running:
+
+```shell
+pulumi stack
+```
+
+When you are done with your compute instance, you can delete the stack using `pulumi destroy`:
+
+```shell
+pulumi destroy
+```
+
+
 
 
 

@@ -17,7 +17,7 @@ public final class InfrastructureFinder {
 		// private constructor to prevent instantiation of factory class
 	}
 
-	public static InstanceStructure findInfrastructure(EnumMap<Params, String> configMap, InstanceStructure instance) {
+	public static InstanceStructure find(EnumMap<Params, String> configMap, InstanceStructure instance) {
 		return switch (instance) {
 			case null -> findFirstAvailabilityDomain(configMap);
 			case AvailabilityDomain availabilityDomain -> findFirstShape(configMap, availabilityDomain);

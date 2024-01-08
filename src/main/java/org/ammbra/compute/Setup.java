@@ -34,11 +34,11 @@ public class Setup {
 
 		var subnet = (Subnetwork) SubnetInfrastructureFactory.provision(configMap, routeTable);
 
-		var firstAvailabilityDomain = (AvailabilityDomain) InfrastructureFinder.findInfrastructure(configMap, null);
+		var firstAvailabilityDomain = (AvailabilityDomain) InfrastructureFinder.find(configMap, null);
 
-		var firstShape = (ComputeShape)InfrastructureFinder.findInfrastructure(configMap, firstAvailabilityDomain);
+		var firstShape = (ComputeShape)InfrastructureFinder.find(configMap, firstAvailabilityDomain);
 
-		var compatibleImage = (PlatformImage) InfrastructureFinder.findInfrastructure(configMap, firstShape);
+		var compatibleImage = (PlatformImage) InfrastructureFinder.find(configMap, firstShape);
 
 		int amount = Integer.parseInt(configMap.get(Params.AMOUNT_VM));
 
