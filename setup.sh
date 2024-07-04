@@ -1,3 +1,7 @@
+read -p "Please provide your Pulumi config passphrase"  -r
+echo    # (optional) move to a new line
+export PULUMI_CONFIG_PASSPHRASE=$REPLY
+
 read -p "Please provide your OCI region: "  -r
 echo    # (optional) move to a new line
 if [[   ! -z "$REPLY" ]]
@@ -35,7 +39,7 @@ then
 pulumi config set compartment_ocid $REPLY
 fi
 
-read -p "Please provide oci private key" -r
+read -p "Please provide the path to your local oci private key" -r
 echo    # (optional) move to a new line
 if [[   ! -z "$REPLY" ]]
 then

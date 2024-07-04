@@ -13,3 +13,8 @@ config:
   oci-vm-provider:vcn_cidr_block: 10.0.0.0/16
   oci-vm-provider:vcn_display_name: demo_vcn
   oci-vm-provider:vcn_dns_label: demodns
+  oci:fingerprint: encrypted-oci-fingerprint
+  oci:privateKey: encrypted-oci-private-key-content
+  oci:region: us-phoenix-1
+  oci:tenancyOcid: encrypted-tenancy-ocid
+  oci:userOcid: encrypted-user-ocid

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.pulumi</groupId>
+    <groupId>org.ammbra.compute</groupId>
     <artifactId>oci-vm-provider</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -15,7 +15,7 @@
         <maven.compiler.release>21</maven.compiler.release>
         <mainClass>org.ammbra.compute.Setup</mainClass>
         <mainArgs/>
-        <oci.version>0.16.0</oci.version>
+        <oci.version>1.41.0</oci.version>
     </properties>
 
     <dependencies>
@@ -94,7 +94,6 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
         </plugins>
